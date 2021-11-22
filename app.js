@@ -1,13 +1,16 @@
-require("./config/database").connect();
-const express = require("express");
-const RegisterController = require("./controller/Register");
-const LoginController = require("./controller/Login");
-const ImageController = require("./controller/Image");
+import database from "./config/database";
+import express from "express";
+import RegisterController from "./controller/Register";
+import LoginController from "./controller/Login";
+import ImageController from "./controller/Image";
 // const auth = require("./middlewares/auth");
 
+database.connect();
 const app = express();
 
-app.use(express.json({ limit: "50mb" }));
+app.disable("x-powered-by");
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.use("/register", RegisterController);
 app.use("/login", LoginController);
@@ -34,4 +37,4 @@ app.use("*", (req, res) => {
   });
 });
 
-module.exports = app;
+export default app;

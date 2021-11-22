@@ -1,13 +1,15 @@
-require("dotenv").config();
-const http = require("http");
-const app = require("../app");
-const server = http.createServer(app);
+import dotenv from "dotenv";
+import http from "http";
+import app from "../app";
 
-const { API_PORT } = process.env;
+dotenv.config();
+
+const server = http.createServer(app);
+const { API_PORT, API_HOST } = process.env;
 
 const port = API_PORT || 5000;
 
 // server listening
 server.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on port http://${API_HOST}:${port}`);
 });
