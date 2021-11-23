@@ -8,6 +8,7 @@ var router = express.Router();
 
 router.post("/", validateRequirements, async (req, res) => {
   const { email, password } = req.body;
+  
   try {
     // get document if user already exist
     // validate if user exist in our database

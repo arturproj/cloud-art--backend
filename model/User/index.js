@@ -13,10 +13,9 @@ const User = mongoose.model("user", userSchema);
  * @param {string} email
  * @param {string} password
  * @param {string} token
- * @returns
+ * @returns promise mongodb user
  */
 export function addUser(email, password, token) {
-  //
   return User.create({
     email: email.toLowerCase(), // sanitize: convert email to lowercase
     password,
@@ -26,13 +25,19 @@ export function addUser(email, password, token) {
 
 /**
  * Find single user from collection
- * @param {object} query
- * @returns {object|null} user
+ * @param {object} query search properties ex: { _id : "****" }
+ * @returns {object|null} promise mongodb user
  */
 export function getUser(query) {
   return User.findOne(query);
 }
 
+/**
+ * Update user token by id user
+ * @param {string} id 
+ * @param {string} token 
+ * @returns promise mongodb user
+ */
 export function updateUserToken(id, token) {
   return User.updateOne(
     { id },

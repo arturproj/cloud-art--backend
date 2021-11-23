@@ -6,6 +6,7 @@ import { createToken, encryptionPasswords } from "../../helpers/utils";
 var router = express.Router();
 router.post("/", validateRequirements, async (req, res) => {
   const { email, password } = req.body;
+
   try {
     // get document if user already exist
     const user = await getUser({ email });
@@ -36,13 +37,13 @@ router.post("/", validateRequirements, async (req, res) => {
     // create a new token
     const token = createToken(email, expiresIn);
 
-    // Save new token into document user
-    updateUserToken(user._id, token).then((res) =>
-      console.log("token updated", res)
-    );
-
     // return new user
     res.status(201).json({ success: true, email: user.email, token: token });
+
+    // Save new token into document user
+    updateUserToken(user._id, token).then((res) =>
+      console.log("token updated", user._id, res)
+    );
   } catch (err) {
     console.log(err);
     res.status(500).json({ success: false, error: err });
