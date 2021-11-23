@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 dotenv.config();
 
 const { MONGODB_URL } = process.env;
-console.log("MongoDB", MONGODB_URL)
+
 function connect() {
   // Connecting to the database
   return mongoose

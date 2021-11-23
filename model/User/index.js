@@ -33,4 +33,13 @@ export function getUser(query) {
   return User.findOne(query);
 }
 
+export function updateUserToken(id, token) {
+  return User.updateOne(
+    { id },
+    {
+      token,
+    }
+  );
+}
+
 export default User;
