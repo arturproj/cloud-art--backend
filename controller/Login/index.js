@@ -12,10 +12,15 @@ router.post("/", validateRequirements, async (req, res) => {
     const user = await getUser({ email });
     // validate if user exist in our database
     if (!user) {
-      return res.status(409).json({
-        success: false,
-        message: "User is not found. Please sign up.",
-      });
+      return (
+        res
+          // .status(409)
+          .json({
+            success: false,
+            status: 409,
+            message: "User is not found. Please sign up.",
+          })
+      );
     }
 
     //Encrypt user password
@@ -24,10 +29,15 @@ router.post("/", validateRequirements, async (req, res) => {
     // validate if passwords is equals
     if (encryptedPassword !== user.password) {
       if (!user) {
-        return res.status(203).json({
-          success: false,
-          message: "Wrong email or password. Please try again.",
-        });
+        return (
+          res
+            // .status(203)
+            .json({
+              success: false,
+              status: 203,
+              message: "Wrong email or password. Please try again.",
+            })
+        );
       }
     }
 
@@ -38,7 +48,9 @@ router.post("/", validateRequirements, async (req, res) => {
     const token = createToken(email, expiresIn);
 
     // return new user
-    res.status(201).json({ success: true, email: user.email, token: token });
+    res
+      // .status(201)
+      .json({ success: true, status: 201, email: user.email, token: token });
 
     // Save new token into document user
     updateUserToken(user._id, token).then((res) =>
@@ -46,7 +58,9 @@ router.post("/", validateRequirements, async (req, res) => {
     );
   } catch (err) {
     console.log(err);
-    res.status(500).json({ success: false, error: err });
+    res
+      // .status(500)
+      .json({ success: false, status: 500, error: err });
   }
 });
 

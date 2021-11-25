@@ -3,12 +3,14 @@ import express from "express";
 import RegisterController from "./controller/Register";
 import LoginController from "./controller/Login";
 import ImageController from "./controller/Image";
+import cors from "cors";
 // const auth = require("./middlewares/auth");
 
 database.connect();
 const app = express();
 
 app.disable("x-powered-by");
+app.use(cors());
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 

@@ -9,21 +9,21 @@ export default function (req, res, next) {
   // Validate user input
   if (!(email && password)) {
     return res
-      .status(401)
-      .json({ success: false, message: "All input is required" });
+      // .status(401)
+      .json({ success: false, status: 401, message: "All input is required" });
   }
 
   if (!patternEmail.test(email)) {
     return res
-      .status(401)
-      .json({ success: false, message: "Email not validated" });
+      // .status(401)
+      .json({ success: false, status: 401, message: "Email not validated" });
   }
 
   // Validate type value input
   if (!patternPassword.test(password)) {
     return res
-      .status(401)
-      .json({ success: false, message: "Password not validated" });
+      // .status(401)
+      .json({ success: false, status: 401, message: "Password not validated" });
   }
 
   return next();
