@@ -24,3 +24,14 @@ const DEFAULT_PSWD_SALT = 16;
  */
 export const encryptionPasswords = (password, salt = DEFAULT_PSWD_SALT) =>
   bcrypt.hash(password, salt);
+
+/**
+ *
+ * @param {sting} token_string
+ * @returns {object}
+ */
+export const authenticateToken = (token_string) =>
+  jwt.verify(token_string, process.env.SECRET_KEY, (err, user) => ({
+    err,
+    user,
+  }));

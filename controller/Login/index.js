@@ -1,10 +1,11 @@
 import express from "express";
 import validateRequirements from "../../middleware/ValidateFrom";
 import { getUser, updateUserToken } from "../../model/User";
-import { createToken, encryptionPasswords } from "../../helpers/utils";
+import { createToken, encryptionPasswords } from "../../helpers/tokenUtils";
 
 var router = express.Router();
 router.post("/", validateRequirements, async (req, res) => {
+  console.log("/login",  req.body)
   const { email, password } = req.body;
 
   try {
@@ -46,7 +47,12 @@ router.post("/", validateRequirements, async (req, res) => {
 
     // create a new token
     const token = createToken(email, expiresIn);
-
+    console.log({
+      success: true,
+      status: 201,
+      email: user.email,
+      token: token,
+    });
     // return new user
     res
       // .status(201)

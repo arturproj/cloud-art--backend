@@ -4,6 +4,7 @@ const patternEmail = new RegExp(
 const patternPassword = new RegExp(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/i);
 
 export default function (req, res, next) {
+  console.log("middleware-> /login",  req.body)
   const { email, password } = req.body;
 
   // Validate user input

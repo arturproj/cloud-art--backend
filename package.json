@@ -4,7 +4,7 @@
   "description": "api a web-based image management tool with meta-data",
   "main": "./config/server.js",
   "scripts": {
-    "start": "node --experimental-modules --es-module-specifier-resolution=node  ",
+    "start": "node --experimental-modules --es-module-specifier-resolution=node ./config/server.js",
     "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

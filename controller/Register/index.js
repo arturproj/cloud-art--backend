@@ -2,7 +2,7 @@ import express from "express";
 
 import validateRequirements from "../../middleware/ValidateFrom";
 import { addUser, getUser } from "../../model/User";
-import { createToken, encryptionPasswords } from "../../helpers/utils";
+import { createToken, encryptionPasswords } from "../../helpers/tokenUtils";
 
 var router = express.Router();
 

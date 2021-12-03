@@ -3,6 +3,7 @@ import express from "express";
 import RegisterController from "./controller/Register";
 import LoginController from "./controller/Login";
 import ImageController from "./controller/Image";
+import UserController from "./controller/User";
 import cors from "cors";
 // const auth = require("./middlewares/auth");
 
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.use("/register", RegisterController);
 app.use("/login", LoginController);
 app.use("/image", ImageController);
+app.use("/user", UserController);
 
 app.get("/", (req, res) => {
   const images = [];
